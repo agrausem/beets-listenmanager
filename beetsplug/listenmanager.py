@@ -105,6 +105,7 @@ class ListenPlugin(BeetsPlugin):
             'relative': None,
             'playlist_dir': u'.',
             'auto': True,
+            'remove_orphans': False
         })
 
         self._matched_playlists = set()
@@ -398,7 +399,8 @@ class ListenPlugin(BeetsPlugin):
         for pl in orphans:
             self._log.info(ui.colorize('text_highlight', pl))
 
-        # self.remove(orphans)
+        if self['remove_orphans'].get(bool):
+            self.remove(orphans)
 
     def remove(self, orphans):
         for playlist in orphans:
