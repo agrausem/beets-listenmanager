@@ -33,12 +33,10 @@ class ChangeCmd():
     def __init__(self, args, opts, pl_template, pl_pattern, defaults=True):
         self._query, self._playlists = [], []
         self._pattern = re.compile(pl_pattern)
-        print(pl_pattern)
         self._defaults = defaults
 
         for arg in args:
             if arg.startswith('@'):
-                print(arg[1:], self._pattern.match(arg[1:]))
                 if self._pattern.match(arg[1:]):
                     self._playlists.append(arg[1:])
             else:
@@ -46,7 +44,6 @@ class ChangeCmd():
 
         self._opts = opts
         self._pl_template = pl_template
-        print(self._playlists, self._query)
 
     @property
     def query(self):
